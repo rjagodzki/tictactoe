@@ -2,6 +2,8 @@ package com.tictactoe.scenes;
 
 import com.tictactoe.buttons.BackButton;
 import com.tictactoe.scenes.template.TemplateBackground;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -17,6 +19,7 @@ import javafx.stage.Stage;
 public class InGame {
 
     private Image image = new Image("file:resources/board.png");
+    private Image imageX = new Image("file:resources/X.png");
 
     private final int size = 6;
 
@@ -28,7 +31,7 @@ public class InGame {
 
         boardGirdPane.setAlignment(Pos.CENTER_LEFT);
 
-        boardGirdPane.setGridLinesVisible(true);
+        boardGirdPane.setGridLinesVisible(false);
         boardGirdPane.setPadding(new Insets(0,0,0,0));
 
         Button square = new Button();
@@ -37,6 +40,13 @@ public class InGame {
                 if(!(col==5 || row == 5)){
                     boardGirdPane.add(square,col,row);
                     square = new Button();
+                    Button finalSquare = square;
+                    square.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            finalSquare.setGraphic(new ImageView(imageX));
+                        }
+                    });
                 }
 
             }
