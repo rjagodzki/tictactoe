@@ -1,5 +1,6 @@
 package com.tictactoe.buttons;
 
+import com.tictactoe.popups.NewPlayerPopup;
 import com.tictactoe.scenes.InGame;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,13 +20,12 @@ public class PlayButton {
 
         button.setStyle("-fx-background-color:  transparent");
 
-        InGame inGame = new InGame();
+        NewPlayerPopup newPlayerPopup = new NewPlayerPopup();
 
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                inGame.gameScene(primaryStage);
-                System.out.println("Przejscie!");
+                newPlayerPopup.newPlayer(primaryStage);
             }
         });
         return button;
