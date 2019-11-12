@@ -13,7 +13,7 @@ import javafx.scene.input.MouseEvent;
 public class MainMechanic{
 
     private Image imageX = new Image("file:resources/X.png");
-    private Image imageO = new Image("file:resources/hehe.png");
+    private Image imageO = new Image("file:resources/o.png");
 
 
 
