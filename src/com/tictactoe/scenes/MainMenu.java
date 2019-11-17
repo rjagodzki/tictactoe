@@ -33,7 +33,7 @@ public class MainMenu {
 
         gridPane.add(mainLogo.logo(),0,0);
         gridPane.add(playButton.show(primaryStage),0,2);
-        gridPane.add(scoreboardButton.show(),0,3);
+        gridPane.add(scoreboardButton.show(primaryStage),0,3);
         gridPane.add(exitButton.show(),0,4);
 
 

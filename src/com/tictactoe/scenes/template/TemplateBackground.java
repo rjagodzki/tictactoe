@@ -19,7 +19,7 @@ public class TemplateBackground {
         GridPane gridPane = new GridPane();
         gridPane.setBackground(background);
 
-        Scene scene = new Scene(gridPane,800,600, Color.WHITE);
+        Scene scene = new Scene(gridPane,800,600, Color.BLUE);
 
         return scene;
     }

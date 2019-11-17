@@ -1,8 +1,6 @@
 package com.tictactoe.players;
 
-//import org.apache.commons.csv.CSVRecord;
-import javafx.scene.shape.Path;
-
+import javax.xml.crypto.Data;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -14,17 +12,28 @@ import java.util.stream.Stream;
 
 public class DataBase {
 
+
+    List<String> playersList;
+    public DataBase(){
+        playersList = new ArrayList<>();
+        playersList.add("cos");
+        Stream<String> lines = null;
+        try {
+            lines = Files.lines(Paths.get("resources/dataBase.csv"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        playersList = lines.collect(Collectors.toList());
+
+//        addPlayer(new NewPlayer(null,0,0));
+    }
+
     File dataBaseFIle = new File("resources/dataBase.csv");
 
-    public List<String> playersList = null;
-
-
-    public void addPlayer(NewPlayer newPlayer){
-        System.out.println("Wchodze?");
 
 
 
-
+    public List addPlayer(NewPlayer newPlayer){
 
         try (FileWriter fileWriter = new FileWriter(dataBaseFIle,true)) {
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
@@ -32,11 +41,11 @@ public class DataBase {
 //            FileReader fileReader = new FileReader(dataBaseFIle);
 
             Stream<String> lines = Files.lines(Paths.get("resources/dataBase.csv"));
-                playersList = lines.collect(Collectors.toList());
+            playersList = lines.collect(Collectors.toList());
 
             if(!doesPlayerExist(newPlayer.toString().toUpperCase())){
                 out.println(newPlayer.toString().toUpperCase());
-
+                setPlayersList(playersList);
             }
             System.out.println("Poka liste");
             for(String player : playersList){
@@ -46,6 +55,7 @@ public class DataBase {
         }catch (IOException e){
             System.out.println("Exception " +e);
         }
+        return playersList;
     }
 
     public boolean doesPlayerExist(String playerRecord){
@@ -58,14 +68,12 @@ public class DataBase {
         return false;
     }
 
-//    public String textFormat(String text){
-//        String result = text;
-//        System.out.println("textFormat 1");
-//        if(text.contains("NewPlayer{playerName='")){
-//            System.out.println("textFormat 2");
-//            result.replace("NewPlayer{playerName='","cos");
-//            return result;
-//        }
-//        return null;
-//    }
+    public void setPlayersList(List<String> playersList) {
+        this.playersList = playersList;
+    }
+
+    public List<String> getPlayersList() {
+        return playersList;
+    }
+
 }
